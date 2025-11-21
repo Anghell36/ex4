@@ -2,15 +2,19 @@ import express from "express";
 import { connectDB } from "./db.js";
 import { Card } from "./models/Card.js";
 import dotenv from "dotenv";
-
+import cors from "cors";
 dotenv.config();
 const app = express();
 
 // Conexión a MongoDB
 connectDB();
 
+
+
 // Middleware para leer JSON
 app.use(express.json());
+
+app.use(cors());
 
 /* ===========================
    ✅ 1. CREATE CARD (VERSIÓN CORREGIDA)
@@ -19,7 +23,7 @@ app.post("/createCard", async (req, res) => {
   try {
     const { name, link, description } = req.body;
 
-    // ✅ Validar campos obligatorios
+    // ✅ Validar campos obligatorios 
     if (!name || !link) {
       return res.status(400).json({ 
         error: "Los campos 'name' y 'link' son obligatorios",
