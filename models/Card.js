@@ -1,27 +1,14 @@
 import mongoose from "mongoose";
 
-const cardSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-    trim: true
-  },
-  link: {
-    type: String,
-    required: true,
-    trim: true
-  },
-  description: {
-    type: String,
-    trim: true
-  },
-  like:{
-    type:Boolean,
-    default:false,
-  },
-}, 
+const cardSchema = new mongoose.Schema(
 {
-  timestamps: true
+     name: {type: String, required: true, trim:true},
+     link:{type: String, required: true, trim:true},
+     description:{type: String, required: true},
+     like: {type:Boolean, default:false},
+},
+{
+     timestamps: true, 
 }
 );
 

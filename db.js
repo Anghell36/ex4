@@ -1,16 +1,15 @@
-// db.js - Versión corregida
-// db.js
+import mongoose from 'mongoose';
 import dotenv from "dotenv";
 dotenv.config();
-import mongoose from "mongoose";
+
+const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/testdb";
 
 export const connectDB = async () => {
-  try {
-    console.log("Intentando conectar a MongoDB...");
-    await mongoose.connect(process.env.MONGODB_URI);
-    console.log("✅ Conectado a MongoDB correctamente");
-  } catch (error) {
-    console.error("❌ Error conectando a MongoDB:", error);
-    process.exit(1);
-  }
-};
+     try {
+          await mongoose.connect(MONGO_URI);
+          console.log("DB connected Successfully");
+     } catch (error) {
+          console.error("DB connection failed", error);
+          console.error(`DB connection error ${error}`)
+     }
+}
